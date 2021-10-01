@@ -5,24 +5,77 @@ header{
     background-color: red;
 }
 nav{
+    display: none;
     background-color: black;
     color: white;
 }
-main{
-    /* display: flex; */
+
+footer{
+    background-color: yellow;
 }
-.article-1{
+.column-main{
     height: 250px;
     background-color: blue;
 }
-.article-2{
+.column-left-side{
     height: 250px;
     background-color: green;
 }
-.article-3{
+.column-right-side{
     height: 250px;
     background-color: purple;
 }
-footer{
-    background-color: yellow;
+.toggle-menu{
+    background-color: white;
+    color: black;
+}
+@media (min-width: 480px) {
+    main{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .column-main{
+        height: 250px;
+        width: 75%;
+        background-color: blue;
+        order: 2;
+    }
+    .column-left-side{
+        width: 25%;
+        height: 250px;
+        background-color: green;
+        order: 1;
+    }
+    .column-right-side{
+        height: 250px;
+        width: 100%;
+        background-color: purple;
+        order: 3;
+    }
+    .toggle-menu{
+        display: none;
+    }
+    nav{
+        display: block;
+    }
+}
+@media (min-width: 800px) {
+    .column-main{
+        height: 250px;
+        width: 50%;
+        background-color: blue;
+        order: 2;
+    }
+    .column-left-side{
+        width: 25%;
+        height: 250px;
+        background-color: green;
+        order: 1;
+    }
+    .column-right-side{
+        height: 250px;
+        width: 25%;
+        background-color: purple;
+        order: 3;
+    }
 }
