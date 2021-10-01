@@ -1,0 +1,28 @@
+*{
+    text-align: center;
+}
+header{
+    background-color: red;
+}
+nav{
+    background-color: black;
+    color: white;
+}
+main{
+    /* display: flex; */
+}
+.article-1{
+    height: 250px;
+    background-color: blue;
+}
+.article-2{
+    height: 250px;
+    background-color: green;
+}
+.article-3{
+    height: 250px;
+    background-color: purple;
+}
+footer{
+    background-color: yellow;
+}
