@@ -1,10 +1,16 @@
-*{
-    text-align: center;
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Georgia", Times, serif;
 }
 header{
     display: flex;
     justify-content: space-around;
     background-color: #ECEBEA;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-bottom: 1px solid black;
 }
 nav{
     display: none;
@@ -15,16 +21,17 @@ nav{
 footer{
     background-color: yellow;
 }
+main.container{
+    margin: 5px;
+}
 .column-main{
-    height: 250px;
-    background-color: blue;
+    display: flex;
+    flex-wrap: wrap;
 }
 .column-left-side{
-    height: 250px;
     background-color: green;
 }
 .column-right-side{
-    height: 250px;
     background-color: purple;
 }
 .toggle-menu{
@@ -35,9 +42,67 @@ footer{
     width: 75%;
     height: auto;
 }
-
+.column-main div.main-news{
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #d4d4d4;
+}
+.column-main div.secondary-news{
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #d4d4d4;
+}
+.main-news .main-img{
+    width: 80%;
+}
+.secondary-news .sm-img{
+    width: 50%;
+}
+.no-underline{
+    text-decoration: none;
+}
+.pointer{
+    cursor: pointer;
+}
+.main-news h2.title{
+    font-size: 30px;
+    color: black;
+    font-weight: bold;
+}
+.main-news p.subtitle{
+    color: #555555;
+}
+.secondary-news h2.title{
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+}
+.secondary-news p.subtitle{
+    color: #555555;
+}
+a.flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* .secondary-news.flex{
+    display: flex;
+    align-items: center;
+} */
+.mt-1{
+    margin-top: 3px;
+}
+.mt-2{
+    margin-top: 6px;
+}
+.mt-3{
+    margin-top: 9px;
+}
+.mb-2{
+    margin-bottom: 6px;
+}
 @media (min-width: 480px) {
-    main{
+    main.container{
         display: flex;
         flex-wrap: wrap;
     }
@@ -45,19 +110,15 @@ footer{
         flex-wrap: wrap;
     }
     .column-main{
-        height: 250px;
-        width: 75%;
-        background-color: blue;
+        width: 70%;
         order: 2;
     }
     .column-left-side{
-        width: 25%;
-        height: 250px;
+        width: 30%;
         background-color: green;
         order: 1;
     }
     .column-right-side{
-        height: 250px;
         width: 100%;
         background-color: purple;
         order: 3;
@@ -89,22 +150,21 @@ footer{
         width: 50%;
         height: auto;
     }
+    .column-main div.secondary-news{
+        width: 50%;
+    }
 }
 @media (min-width: 800px) {
     .column-main{
-        height: 250px;
         width: 50%;
-        background-color: blue;
         order: 2;
     }
     .column-left-side{
         width: 25%;
-        height: 250px;
         background-color: green;
         order: 1;
     }
     .column-right-side{
-        height: 250px;
         width: 25%;
         background-color: purple;
         order: 3;
