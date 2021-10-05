@@ -37,13 +37,23 @@ footer .footer-container ul li a:hover{
     text-decoration: none;
     color: #f88e8e;
 }
+footer .social-media-container{
+    display: flex; 
+    justify-content: center; 
+    margin: auto; 
+    width: 80%;
+}
+footer .social-media-item{
+    width: 10%;
+}
+footer .social-media-item img{
+    width: 100%;
+    cursor: pointer;
+}
 p.text-date{
     font-size: 13px;
     margin-top: 6px;
     margin-bottom: 6px;
-}
-.img-footer{
-    width: 80%;
 }
 main.container{
     margin: 5px;
@@ -69,8 +79,10 @@ main.container{
     flex-wrap: wrap;
 }
 .toggle-menu{
-    width: 80px;
-    
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+    cursor: pointer;
 }
 .header-img{
     width: 100%;
