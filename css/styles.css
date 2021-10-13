@@ -13,7 +13,6 @@ header{
     background-color: #ECEBEA;
     margin-left: 5px;
     margin-right: 5px;
-    border-bottom: 1px solid black;
 }
 nav{
     display: none;
@@ -55,8 +54,14 @@ p.text-date{
     margin-top: 6px;
     margin-bottom: 6px;
 }
-main.container{
-    margin: 5px;
+header .main-header{
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+}
+main{
+    width: 95%;
+    margin: auto;
 }
 .column-main{
     display: flex;
@@ -125,7 +130,7 @@ div.secondary-news{
 .bold{
     font-weight: bold;
 }
-.main-news h2.title{
+.main-news h2{
     font-size: 30px;
     color: black;
     font-weight: bold;
@@ -133,7 +138,7 @@ div.secondary-news{
 .main-news p.subtitle{
     color: #555555;
 }
-.secondary-news h2.title{
+.secondary-news h2{
     font-size: 18px;
     color: black;
     font-weight: bold;
@@ -142,7 +147,7 @@ div.secondary-news{
     padding-top: 10px;
     padding-bottom: 10px;
 }
-.column-left-side div.secondary-news a h2.title{
+.column-left-side div.secondary-news a h2{
     font-size: 15px;
 }
 .column-right-side .title{
@@ -172,7 +177,7 @@ div.most-read-container{
 }
 div.most-read-item{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -182,7 +187,12 @@ div.most-read-item{
     width: 10%;
 }
 .most-read-text{
-    width: 50%;
+    width: 85%;
+}
+.most-read-text a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .most-read-text a {
     text-decoration: none;
@@ -191,12 +201,15 @@ div.most-read-item{
 .most-read-text a:hover {
     color: #f88e8e;
 }
+.most-read-text a span{
+    width: 70%;
+}
 .most-read-img{
     text-align: center;
-    width: 40%;
+    width: 30%;
 }
 .most-read-img img{
-    width: 70%;
+    width: 80%;
 }
 .most-read-number span{
     padding: 4px;
@@ -222,7 +235,7 @@ div.most-read-item{
     text-decoration: none;
     color: black;
 }
-.right-side-container .add-container{
+.add-container{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -243,8 +256,11 @@ div.most-read-item{
 .mb-2{
     margin-bottom: 6px;
 }
+.mr-2{
+    margin-right: 6px;
+}
 @media (min-width: 480px) {
-    main.container{
+    main{
         display: flex;
         flex-wrap: wrap;
     }
@@ -273,7 +289,7 @@ div.most-read-item{
     }
     nav{
         display: block;
-        width: 100%;
+        width: 95%;
         height: 35px;
     }
     nav .navbar{
@@ -292,7 +308,7 @@ div.most-read-item{
         background-color: #f88e8e;
     }
     .header-img{
-        width: 75%;
+        width: 7    0%;
         height: auto;
     }
     .left-side-container .secondary-news p{
@@ -302,13 +318,23 @@ div.most-read-item{
         width: 10%;
     }
     .most-read-text{
-        width: 55%;
+        width: 85%;
     }
     .most-read-img{
         width: 35%;
     }
+    .most-read-img img{
+        width: 70%;
+    }
     .left-side-container .secondary-news .sm-img{
         width: 70%;
+    }
+    .left-side-container .add-container{
+        flex-direction: column;
+        width: 100%;
+    }
+    .border-top{
+        border-top: 1px solid #d4d4d4;
     }
 }
 @media (min-width: 650px) {
@@ -339,17 +365,23 @@ div.most-read-item{
         width: 50%;
         height: auto;
     }
-    p.text-date{
+    time.text-date{
         font-size: 15px;
+        margin-top: 2px;
+        margin-bottom: 2px;
     }
     .column-main-container{
         border-right: 1px solid #d4d4d4;
     }
     .most-read-number{
-        width: 15%;
+        width: 10%;
+    }
+    .most-read-text a {
+        display: block;
     }
     .most-read-text{
-        width: 55%;
+        width: 85%;
+        font-size: 14px;
     }
     .most-read-img{
         display: none;
@@ -362,8 +394,37 @@ div.most-read-item{
         padding: 10px;
         border-top: 0;
     }
+    .most-read-number span{
+        padding: 4px;
+        color: #f88e8e;
+        background-color: #C0C0C0;
+        font-weight: bold;
+        border-radius: 50%;
+        font-size: 25px;
+    }
 }
+@media (min-width: 900px) {
+    .most-read-number span{
+        padding: 4px;
+        color: #f88e8e;
+        background-color: #C0C0C0;
+        font-weight: bold;
+        border-radius: 50%;
+        font-size: 35px;
+    }
+    .most-read-text{
+        width: 85%;
+        font-size: 16px;
+    }
+}
+
 @media (min-width: 1024px) {
+    .most-read-text a {
+        display: flex;
+    }
+    .most-read-text{
+        width: 85%;
+    }
     .most-read-img{
         display: block;
     }
