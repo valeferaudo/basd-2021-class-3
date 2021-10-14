@@ -130,7 +130,7 @@ div.secondary-news{
 .bold{
     font-weight: bold;
 }
-.main-news h2{
+.main-news h2, h1{
     font-size: 30px;
     color: black;
     font-weight: bold;
@@ -244,6 +244,9 @@ div.most-read-item{
 .no-border{
     border-bottom: 0;
 }
+.m-2{
+    margin: 6px;
+}
 .mt-1{
     margin-top: 3px;
 }
@@ -258,6 +261,27 @@ div.most-read-item{
 }
 .mr-2{
     margin-right: 6px;
+}
+input{
+    display: block;
+    width: 80%;
+    padding: 5px;
+    margin: 10px auto 5px auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+button.success{
+    width: 50%;
+    border-radius: 4px; 
+    border: 2px solid #4CAF50;
+    font-family:'Roboto',sans-serif;
+    font-weight: 300;
+}
+button.success:hover{
+    color: #FFFFFF;
+    background-color: #4CAF50;
+    border: 2px solid #FFFFFF;
 }
 @media (min-width: 480px) {
     main{
