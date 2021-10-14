@@ -262,6 +262,18 @@ div.most-read-item{
 .mr-2{
     margin-right: 6px;
 }
+div.container{
+    padding: 10px; 
+    height:565px;
+}
+form div.form-container{
+    display: flex; 
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+.form-column{
+    width: 100%
+}
 input{
     display: block;
     width: 80%;
@@ -273,10 +285,12 @@ input{
 }
 button.success{
     width: 50%;
+    padding: 5px;
     border-radius: 4px; 
     border: 2px solid #4CAF50;
     font-family:'Roboto',sans-serif;
     font-weight: 300;
+    cursor: pointer;
 }
 button.success:hover{
     color: #FFFFFF;
@@ -367,6 +381,19 @@ button.success:hover{
     }
     .left-side-container .secondary-news a p{
         display: block;
+    }
+    form div.form-container{
+        display: flex; 
+        flex-direction: row;  
+    }
+    .form-column{
+        width: 50%
+    }
+    input{
+        width: 90%;
+    }
+    button.success{
+        width: 25%;
     }
 }
 @media (min-width: 800px) {
