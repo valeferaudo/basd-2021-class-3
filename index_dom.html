@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./css/reset.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="./css/styles.css">
+    <script src="./js/app.js"></script>
 </head>
 <body>
     <header>
@@ -28,24 +29,45 @@
         </nav>
     </header>
     <div class="container">
-        <h1 class="m-2">Nueva Subscripción</h1>
-        <form action="">
+        <h1 class="m-2 text-center">Nueva Subscripción</h1>
+        <form name="subscription-form" action="">
             <div class="form-container">
                 <div class="form-column">
-                    <input type="text" name="" id="" placeholder="Nombre y Apellido">
-                    <input type="email" name="" id="" placeholder="Email">
-                    <input type="password" name="" id="" placeholder="Contraseña">
-                    <input type="text" name="" id="" placeholder="Edad">
-                    <input type="text" name="" id="" placeholder="Teléfono">
+                    <div class="form-input">
+                        <input id="input-fullName" type="text" name="fullName" id="" placeholder="Nombre y Apellido">
+                        <span id="empty-fullName" class="msg-error hide">*Ingrese el nombre completo.</span>
+                        <span id="error-fullName" class="msg-error hide">*Debe ser mayor a 6 caracteres y contener un espacio.</span>
+                    </div>
+                    <div class="form-input">
+                        <input id="input-email" type="email" name="email" id="" placeholder="Email">
+
+                    </div>
+                    <div class="form-input">
+                        <input id="input-password" type="password" name="password" id="" placeholder="Contraseña">
+                    </div>
+                    <div class="form-input">
+                        <input id="input-age" type="number" name="" id="age" placeholder="Edad">
+                    </div>
+                    <div class="form-input">
+                        <input id="input-phone" type="number" name="phone" id="" placeholder="Teléfono">
+                    </div>
                 </div>
                 <div class="form-column">
-                    <input type="text" name="" id="" placeholder="Dirección">
-                    <input type="text" name="" id="" placeholder="Ciudad">
-                    <input type="text" name="" id="" placeholder="Código Postal">
-                    <input type="text" name="" id="" placeholder="DNI">
+                    <div class="form-input">
+                        <input id="input-address" type="text" name="address" id="" placeholder="Dirección">
+                    </div>
+                    <div class="form-input">
+                        <input id="input-city" type="text" name="city" id="" placeholder="Ciudad">
+                    </div>
+                    <div class="form-input">
+                        <input id="input-zipCode" type="text" name="zipCode" id="" placeholder="Código Postal">
+                    </div>
+                    <div class="form-input">
+                        <input id="input-idCard" type="number" name="idCard" id="" placeholder="DNI">
+                    </div>
                 </div>
             </div>
-            <div style="display: flex; justify-content: center;">
+            <div class="button-container">
                 <button class="success">Enviar</button>
             </div>
         </form>
