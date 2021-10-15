@@ -267,7 +267,7 @@ div.most-read-item{
 }
 div.container{
     padding: 10px; 
-    height:565px;
+    height: 100%;
 }
 form div.form-container{
     display: flex; 

@@ -1,58 +1,108 @@
 window.onload = function () {
     var fullNameInput = document.getElementById('input-fullName');
-    fullNameInput.addEventListener('blur',validateFullName);
+    fullNameInput.addEventListener('blur',checkFullName);
+    fullNameInput.addEventListener('focus',focusFullName);
     var emailInput = document.getElementById('input-email');
-    emailInput.addEventListener('blur',validateEmail);
+    emailInput.addEventListener('blur',checkEmail);
+    emailInput.addEventListener('focus',focusEmail);
     var passwordInput = document.getElementById('input-password');
-    passwordInput.addEventListener('blur',validatePassword);
+    passwordInput.addEventListener('blur',checkPassword);
+    passwordInput.addEventListener('focus',focusPassword);
     var ageInput = document.getElementById('input-age');
-    ageInput.addEventListener('blur',validateAge);
+    ageInput.addEventListener('blur',checkAge);
+    ageInput.addEventListener('focus',focusAge);
     var phoneInput = document.getElementById('input-phone');
-    phoneInput.addEventListener('blur',validatePhone);
+    phoneInput.addEventListener('blur',checkPhone);
+    phoneInput.addEventListener('focus',focusPhone);
     var addressInput = document.getElementById('input-address');
-    addressInput.addEventListener('blur',validateAddress);
+    addressInput.addEventListener('blur',checkAddress);
+    addressInput.addEventListener('focus',focusAddress);
     var cityInput = document.getElementById('input-city');
-    cityInput.addEventListener('blur',validateCity);
+    cityInput.addEventListener('blur',checkCity);
+    cityInput.addEventListener('focus',focusCity);
     var zipCodeInput = document.getElementById('input-zipCode');
-    zipCodeInput.addEventListener('blur',validateZipCode);
+    zipCodeInput.addEventListener('blur',checkZipCode);
+    zipCodeInput.addEventListener('focus',focusZipCode);
     var idCardInput = document.getElementById('input-idCard');
-    idCardInput.addEventListener('blur',validateIDCard);
+    idCardInput.addEventListener('blur',checkIDCard);
+    idCardInput.addEventListener('focus',focusIDCard);
+    var buttonSend = document.getElementById('button-send');
+    buttonSend.addEventListener('click',sendForm);
 
-    function validateFullName(e){
-        if(e.target.value.length === 0){
+    var errorList = [];
+
+    function checkFullName(e){
+        validateFullName(e.target.value);
+    }
+    function checkEmail(e){
+        validateEmail(e.target.value);
+    }
+    function checkPassword(e){
+        validatePassword(e.target.value);
+    }
+    function checkAge(e){
+        validateAge(e.target.value);
+    }
+    function checkPhone(e){
+        validatePhone(e.target.value);
+    }
+    function checkAddress(e){
+        validateAddress(e.target.value);
+    }
+    function checkCity(e){
+        validateCity(e.target.value);
+    }
+    function checkZipCode(e){
+        validateZipCode(e.target.value);
+    }
+    function checkIDCard(e){
+        validateIDCard(e.target.value);
+    }
+    function validateFullName(content){
+        var array = content.split('');
+        var arrayNumber = getArrayNumber(array);
+        if(content.length === 0){
             var element = document.getElementById("empty-fullName");
             fullNameInput.classList.add('input-error');
-            element.classList.remove('hide')
+            element.classList.remove('hide');
+            errorList.push('Ingrese un nombre completo')
         }
-        else if (e.target.value.length < 6 || e.target.value.indexOf(' ') === -1){
+        else if (!validateCantLetter(arrayNumber)|| content.indexOf(' ') === -1){
             var element = document.getElementById("error-fullName");
             fullNameInput.classList.add('input-error');
-            element.classList.remove('hide')
+            element.classList.remove('hide');
+            errorList.push('El nombre debe ser mayor a 6 caracteres y contener un espacio')
         }
     }
-    function validateEmail(e){
-        var array = e.target.value.split('');
+    function validateCantLetter(array){
+        var cont = 0;
+        for (let i = 0; i < array.length; i++) {
+            if(typeof (array[i]) === 'string' && array[i] !== ' '){
+                cont = cont + 1;
+            }
+        }
+        if (cont > 6){
+            return true
+        }
+        else{
+            return false
+        }
+    }
+    function validateEmail(content){
+        var array = content.split('');
         var arrayNumber = getArrayNumber(array);
-        console.log(arrayNumber)
-        if(e.target.value.length === 0){
-            console.log('VACIO')
+        if(content.length === 0){
+            var element = document.getElementById("empty-email");
+            emailInput.classList.add('input-error');
+            element.classList.remove('hide');
+            errorList.push('Ingrese un email');
         }
-        else if (validateHasSpace(arrayNumber)){
-            console.log('No Puede tener espacios')
+        else if (validateHasSpace(arrayNumber) || !validateHasString(arrayNumber) || !validateHasAt(arrayNumber) || !validateHasDot(arrayNumber) || validateOrderEmail(arrayNumber)){
+            var element = document.getElementById("error-email");
+            emailInput.classList.add('input-error');
+            element.classList.remove('hide');
+            errorList.push('El mail debe seguir el formato de email. Ej: xxx@yyy.zzz');
         }
-        else if (!validateHasString(arrayNumber)){
-            console.log('No tiene letras')
-        }
-        else if (!validateHasAt(arrayNumber)){
-            console.log('No tiene @')
-        }
-        else if (!validateHasDot(arrayNumber)){
-            console.log('No tiene .')
-        }
-        else if (validateOrderEmail(arrayNumber)){
-            console.log('Mal formato')
-        }
-
     }
     function validateHasAt(array){
         if(array.indexOf('@') !== -1){
@@ -88,27 +138,20 @@ window.onload = function () {
             return false
         }
     }
-    function validatePassword(e){
-        var array = e.target.value.split('');
+    function validatePassword(content){
+        var array = content.split('');
         var arrayPassword = getArrayNumber(array);
-        if(e.target.value.length === 0){
-            console.log('VACIO')
+        if(content.length === 0){
+            var element = document.getElementById("empty-password");
+            passwordInput.classList.add('input-error');
+            element.classList.remove('hide');
+            errorList.push('Ingrese una contraseña');
         }
-        else if (e.target.value.indexOf(' ') !== -1) {
-            console.log('NO Puede contener espacios vacios')
-        }
-        else if (e.target.value.length < 8){
-            console.log('MENOR A 8')
-
-        }
-        else if (!validateLetter(arrayPassword)){
-            console.log('No tiene letra')
-        }
-        else if (!validateNumber(arrayPassword)){
-            console.log('No tiene numero')
-        }
-        else{
-            console.log('pasa')
+        else if (content.indexOf(' ') !== -1 || content.length < 8 || !validateLetter(arrayPassword) || !validateNumber(arrayPassword)) {
+            var element = document.getElementById("error-password");
+            passwordInput.classList.add('input-error');
+            element.classList.remove('hide');
+            errorList.push('La contraseña debe tener al menos 8 caracteres y contener un letras y números');
         }
     }
     function getArrayNumber(array){
@@ -139,17 +182,19 @@ window.onload = function () {
         }
         return false;
     }
-    function validateAge(e){
-        if(e.target.value.length === 0){
-            console.log('VACIO')
+    function validateAge(content){
+        if(content.length === 0){
+            var element = document.getElementById("empty-age");
+            ageInput.classList.add('input-error');
+            element.classList.remove('hide');
+            errorList.push('Ingrese una edad');
         }
-        else if (!validateInteger(e.target.value)){
-            console.log('No es integer')
+        else if (!validateInteger(content) || content < 18){
+            var element = document.getElementById("error-age");
+            ageInput.classList.add('input-error');
+            element.classList.remove('hide');
+            errorList.push('La edad debe ser un número mayor o igual a 18.');
         }
-        else if (e.target.value < 18){
-            console.log('Debe ser mayor a 18')
-        }
-
     }
     function validateInteger(age){
         if (age % 1 === 0){
@@ -157,42 +202,34 @@ window.onload = function () {
         }
         return false;
     }
-    function validatePhone(e){
-        if(e.target.value.length === 0){
-            console.log('VACIO')
+    function validatePhone(content){
+        if(content.length === 0){
+            var element = document.getElementById("empty-phone");
+            phoneInput.classList.add('input-error');
+            element.classList.remove('hide');
+            errorList.push('Ingrese un teléfono');
         }
-        else if (e.target.value.length < 7){
-            console.log('MENOR A 7')
-
+        else if (content.length < 7 || !validateInteger(content)){
+            var element = document.getElementById("error-phone");
+            phoneInput.classList.add('input-error');
+            element.classList.remove('hide');
+            errorList.push('El teléfono debe tener al menos 7 caracteres y no contener un espacio, guión ni paréntesis');
         }
-        else if (!validateInteger(e.target.value)){
-            console.log('Debe ser un numero , no debe contener espacios ni guiones ni parentesis')
-        }
-
     }
-    function validateAddress(e){
-        var array = e.target.value.split('');
+    function validateAddress(content){
+        var array = content.split('');
         var arrayNumber = getArrayNumber(array);
-        if(e.target.value.length === 0){
-            console.log('VACIO')
+        if(content.length === 0){
+            var element = document.getElementById("empty-address");
+            addressInput.classList.add('input-error');
+            element.classList.remove('hide');
+            errorList.push('Ingrese una dirección');
         }
-        else if (e.target.value.length < 5){
-            console.log('MENOR A 5')
-        }
-        else if (arrayNumber[0] === ' '){ 
-            console.log('DEBE COMENZAR CON LETRAS')
-        }
-        else if (!validateHasString(arrayNumber)){ 
-            console.log('DEBE CONTENER LETRAS')
-        }
-        else if (!validateHasSpace(arrayNumber)){
-            console.log('DEBE TENER UN ESPACIO')
-        }
-        else if (!validateHasNumber(arrayNumber)){
-            console.log('DEBE TENER UN NUMERO')
-        }
-        else if (!validateOrderAddress(arrayNumber)){
-            console.log('DEBE ESTAR PRIMEROP LAS LETRAS , despues el espacio y ultimo NUMERO')
+        else if (content.length < 5 || arrayNumber[0] === ' ' || !validateHasString(arrayNumber) || !validateHasSpace(arrayNumber) || !validateHasNumber(arrayNumber) || !validateOrderAddress(arrayNumber)){
+            var element = document.getElementById("error-address");
+            addressInput.classList.add('input-error');
+            element.classList.remove('hide');
+            errorList.push('La dirección debe tener al menos 5 caracteres y contener letras y números separadas por un espacio');
         }
     }
     function validateHasString(array){
@@ -257,37 +294,181 @@ window.onload = function () {
             return false
         }
     }
-    function validateCity(e){
-        if(e.target.value.length === 0){
-            console.log('VACIO')
+    function validateCity(content){
+        if(content.length === 0){
+            var element = document.getElementById("empty-city");
+            cityInput.classList.add('input-error');
+            element.classList.remove('hide');
+            errorList.push('Ingrese una ciudad');
         }
-        else if (e.target.value.length < 3){
-            console.log('MENOR A 3')
-
+        else if (content.length < 3){
+            var element = document.getElementById("error-city");
+            cityInput.classList.add('input-error');
+            element.classList.remove('hide');
+            errorList.push('La ciudad debe tener al menos 3 caracteres');
         }
-
     }
-    function validateZipCode(e){
-        if(e.target.value.length === 0){
-            console.log('VACIO')
+    function validateZipCode(content){
+        if(content.length === 0){
+            var element = document.getElementById("empty-zipCode");
+            zipCodeInput.classList.add('input-error');
+            element.classList.remove('hide');
+            errorList.push('Ingrese un código postal');
         }
-        else if (e.target.value.length < 3){
-            console.log('MENOR A 3')
-
+        else if (content.length < 3){
+            var element = document.getElementById("error-zipCode");
+            zipCodeInput.classList.add('input-error');
+            element.classList.remove('hide');
+            errorList.push('El código postal debe tener al menos 3 caracteres');
         }
-
     }
-    function validateIDCard(e){
-        if(e.target.value.length === 0){
-            console.log('VACIO')
+    function validateIDCard(content){
+        if(content.length === 0){
+            var element = document.getElementById("empty-idCard");
+            idCardInput.classList.add('input-error');
+            element.classList.remove('hide');
+            errorList.push('Ingrese un DNI');
         }
-        else if (!validateInteger(e.target.value)){
-            console.log('No es integer')
+        else if (!validateInteger(content) || content.length < 7 || content.length > 8){
+            var element = document.getElementById("error-idCard");
+            idCardInput.classList.add('input-error');
+            element.classList.remove('hide');
+            errorList.push('El DNI debe ser un número entre 7 y 8 caracteres');
         }
-        else if (e.target.value.length < 7 || e.target.value.length > 8){
-            console.log('Tiene que ser de 7 u 8 digitos')
-
+    }
+    function focusFullName (){
+        if(fullNameInput.classList.contains('input-error')){
+            fullNameInput.classList.remove('input-error')
         }
-
+        var element1 = document.getElementById("empty-fullName");
+        var element2 = document.getElementById("error-fullName");
+        if(!element1.classList.contains('hide')){
+            element1.classList.add('hide')
+        }
+        if(!element2.classList.contains('hide')){
+            element2.classList.add('hide')
+        }
+    }
+    function focusEmail (){
+        if(emailInput.classList.contains('input-error')){
+            emailInput.classList.remove('input-error')
+        }
+        var element1 = document.getElementById("empty-email");
+        var element2 = document.getElementById("error-email");
+        if(!element1.classList.contains('hide')){
+            element1.classList.add('hide')
+        }
+        if(!element2.classList.contains('hide')){
+            element2.classList.add('hide')
+        }
+    }
+    function focusPassword (){
+        if(passwordInput.classList.contains('input-error')){
+            passwordInput.classList.remove('input-error')
+        }
+        var element1 = document.getElementById("empty-password");
+        var element2 = document.getElementById("error-password");
+        if(!element1.classList.contains('hide')){
+            element1.classList.add('hide')
+        }
+        if(!element2.classList.contains('hide')){
+            element2.classList.add('hide')
+        }
+    }
+    function focusAge (){
+        if(ageInput.classList.contains('input-error')){
+            ageInput.classList.remove('input-error')
+        }
+        var element1 = document.getElementById("empty-age");
+        var element2 = document.getElementById("error-age");
+        if(!element1.classList.contains('hide')){
+            element1.classList.add('hide')
+        }
+        if(!element2.classList.contains('hide')){
+            element2.classList.add('hide')
+        }
+    }
+    function focusPhone (){
+        if(phoneInput.classList.contains('input-error')){
+            phoneInput.classList.remove('input-error')
+        }
+        var element1 = document.getElementById("empty-phone");
+        var element2 = document.getElementById("error-phone");
+        if(!element1.classList.contains('hide')){
+            element1.classList.add('hide')
+        }
+        if(!element2.classList.contains('hide')){
+            element2.classList.add('hide')
+        }
+    }
+    function focusAddress (){
+        if(addressInput.classList.contains('input-error')){
+            addressInput.classList.remove('input-error')
+        }
+        var element1 = document.getElementById("empty-address");
+        var element2 = document.getElementById("error-address");
+        if(!element1.classList.contains('hide')){
+            element1.classList.add('hide')
+        }
+        if(!element2.classList.contains('hide')){
+            element2.classList.add('hide')
+        }
+    }
+    function focusCity (){
+        if(cityInput.classList.contains('input-error')){
+            cityInput.classList.remove('input-error')
+        }
+        var element1 = document.getElementById("empty-city");
+        var element2 = document.getElementById("error-city");
+        if(!element1.classList.contains('hide')){
+            element1.classList.add('hide')
+        }
+        if(!element2.classList.contains('hide')){
+            element2.classList.add('hide')
+        }
+    }
+    function focusZipCode (){
+        if(zipCodeInput.classList.contains('input-error')){
+            zipCodeInput.classList.remove('input-error')
+        }
+        var element1 = document.getElementById("empty-zipCode");
+        var element2 = document.getElementById("error-zipCode");
+        if(!element1.classList.contains('hide')){
+            element1.classList.add('hide')
+        }
+        if(!element2.classList.contains('hide')){
+            element2.classList.add('hide')
+        }
+    }
+    function focusIDCard (){
+        if(idCardInput.classList.contains('input-error')){
+            idCardInput.classList.remove('input-error')
+        }
+        var element1 = document.getElementById("empty-idCard");
+        var element2 = document.getElementById("error-idCard");
+        if(!element1.classList.contains('hide')){
+            element1.classList.add('hide')
+        }
+        if(!element2.classList.contains('hide')){
+            element2.classList.add('hide')
+        }
+    }
+    function sendForm(){
+        errorList = [];
+        validateFullName(fullNameInput.value);
+        validateEmail(emailInput.value);
+        validatePassword(passwordInput.value);
+        validateAge(ageInput.value);
+        validatePhone(phoneInput.value);
+        validateAddress(addressInput.value);
+        validateCity(cityInput.value);
+        validateZipCode(zipCodeInput.value);
+        validateIDCard(idCardInput.value);
+        if(errorList.length === 0){
+            window.alert(`Nombre completo: ${fullNameInput.value}. Email: ${emailInput.value}. Contraseña: ${passwordInput.value}. Edad: ${ageInput.value}. Teléfono: ${phoneInput.value}. Dirección: ${addressInput.value}. Ciudad: ${cityInput.value}. Código postal: ${zipCodeInput.value}. DNI: ${idCardInput.value}`)
+        }
+        else{
+            window.alert(errorList)
+        }
     }
 }

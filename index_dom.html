@@ -30,45 +30,60 @@
     </header>
     <div class="container">
         <h1 class="m-2 text-center">Nueva Subscripción</h1>
-        <form name="subscription-form" action="">
+        <form name="subscriptionForm" action="">
             <div class="form-container">
                 <div class="form-column">
                     <div class="form-input">
                         <input id="input-fullName" type="text" name="fullName" id="" placeholder="Nombre y Apellido">
-                        <span id="empty-fullName" class="msg-error hide">*Ingrese el nombre completo.</span>
+                        <span id="empty-fullName" class="msg-error hide">*Ingrese un nombre completo.</span>
                         <span id="error-fullName" class="msg-error hide">*Debe ser mayor a 6 caracteres y contener un espacio.</span>
                     </div>
                     <div class="form-input">
                         <input id="input-email" type="email" name="email" id="" placeholder="Email">
-
+                        <span id="empty-email" class="msg-error hide">*Ingrese un email.</span>
+                        <span id="error-email" class="msg-error hide">*Debe seguir el formato de email. Ej: xxx@yyy.zzz</span>
                     </div>
                     <div class="form-input">
                         <input id="input-password" type="password" name="password" id="" placeholder="Contraseña">
+                        <span id="empty-password" class="msg-error hide">*Ingrese una contraseña.</span>
+                        <span id="error-password" class="msg-error hide">*Debe tener al menos 8 caracteres y contener un letras y números.</span>
                     </div>
                     <div class="form-input">
                         <input id="input-age" type="number" name="" id="age" placeholder="Edad">
+                        <span id="empty-age" class="msg-error hide">*Ingrese una edad.</span>
+                        <span id="error-age" class="msg-error hide">*Debe ser un número mayor o igual a 18.</span>
                     </div>
                     <div class="form-input">
                         <input id="input-phone" type="number" name="phone" id="" placeholder="Teléfono">
+                        <span id="empty-phone" class="msg-error hide">*Ingrese un teléfono.</span>
+                        <span id="error-phone" class="msg-error hide">*Debe tener al menos 7 caracteres y no contener un espacio, guión ni paréntesis.</span>
                     </div>
                 </div>
                 <div class="form-column">
                     <div class="form-input">
                         <input id="input-address" type="text" name="address" id="" placeholder="Dirección">
+                        <span id="empty-address" class="msg-error hide">*Ingrese una dirección.</span>
+                        <span id="error-address" class="msg-error hide">*Debe tener al menos 5 caracteres y contener letras y números separadas por un espacio.</span>
                     </div>
                     <div class="form-input">
                         <input id="input-city" type="text" name="city" id="" placeholder="Ciudad">
+                        <span id="empty-city" class="msg-error hide">*Ingrese una ciudad.</span>
+                        <span id="error-city" class="msg-error hide">*Debe tener al menos 3 caracteres.</span>
                     </div>
                     <div class="form-input">
                         <input id="input-zipCode" type="text" name="zipCode" id="" placeholder="Código Postal">
+                        <span id="empty-zipCode" class="msg-error hide">*Ingrese un código postal.</span>
+                        <span id="error-zipCode" class="msg-error hide">*Debe tener al menos 3 caracteres.</span>
                     </div>
                     <div class="form-input">
                         <input id="input-idCard" type="number" name="idCard" id="" placeholder="DNI">
+                        <span id="empty-idCard" class="msg-error hide">*Ingrese un DNI.</span>
+                        <span id="error-idCard" class="msg-error hide">*Debe ser un número entre 7 y 8 caracteres.</span>
                     </div>
                 </div>
             </div>
             <div class="button-container">
-                <button class="success">Enviar</button>
+                <button id="button-send" type="button" class="success">Enviar</button>
             </div>
         </form>
     </div>
