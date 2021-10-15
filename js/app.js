@@ -2,6 +2,8 @@ window.onload = function () {
     var fullNameInput = document.getElementById('input-fullName');
     fullNameInput.addEventListener('blur',checkFullName);
     fullNameInput.addEventListener('focus',focusFullName);
+    fullNameInput.addEventListener('keypress',setText);
+    fullNameInput.addEventListener('keyup',setText);    
     var emailInput = document.getElementById('input-email');
     emailInput.addEventListener('blur',checkEmail);
     emailInput.addEventListener('focus',focusEmail);
@@ -470,5 +472,9 @@ window.onload = function () {
         else{
             window.alert(errorList)
         }
+    }
+    function setText(){
+        var element = document.getElementById('user');
+        element.innerText = "Hola " + fullNameInput.value;
     }
 }
