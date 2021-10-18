@@ -267,7 +267,6 @@ div.most-read-item{
 }
 div.container{
     padding: 10px; 
-    height: 100%;
 }
 form div.form-container{
     display: flex; 
@@ -428,6 +427,9 @@ button.success:hover{
     }
     button.success{
         width: 25%;
+    }
+    .container{
+        height: 500px;
     }
 }
 @media (min-width: 800px) {

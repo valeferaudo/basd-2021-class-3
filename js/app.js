@@ -67,7 +67,9 @@ window.onload = function () {
             var element = document.getElementById("empty-fullName");
             fullNameInput.classList.add('input-error');
             element.classList.remove('hide');
-            errorList.push('Ingrese un nombre completo')
+            errorList.push('Ingrese un nombre completo');
+            var element = document.getElementById('user');
+            element.classList.add('hide');
         }
         else if (!validateCantLetter(arrayNumber)|| content.indexOf(' ') === -1){
             var element = document.getElementById("error-fullName");
@@ -475,6 +477,7 @@ window.onload = function () {
     }
     function setText(){
         var element = document.getElementById('user');
+        element.classList.remove('hide');
         element.innerText = "Hola " + fullNameInput.value;
     }
 }
