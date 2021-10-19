@@ -10,6 +10,9 @@ window.onload = function () {
     var passwordInput = document.getElementById('input-password');
     passwordInput.addEventListener('blur',checkPassword);
     passwordInput.addEventListener('focus',focusPassword);
+    var password2Input = document.getElementById('input-password-2');
+    password2Input.addEventListener('blur',checkPassword2);
+    password2Input.addEventListener('focus',focusPassword2);
     var ageInput = document.getElementById('input-age');
     ageInput.addEventListener('blur',checkAge);
     ageInput.addEventListener('focus',focusAge);
@@ -41,6 +44,9 @@ window.onload = function () {
     }
     function checkPassword(e){
         validatePassword(e.target.value);
+    }
+    function checkPassword2(e){
+        validatePassword2(e.target.value);
     }
     function checkAge(e){
         validateAge(e.target.value);
@@ -156,6 +162,20 @@ window.onload = function () {
             passwordInput.classList.add('input-error');
             element.classList.remove('hide');
             errorList.push('La contraseña debe tener al menos 8 caracteres y contener un letras y números');
+        }
+    }
+    function validatePassword2(content){
+        if(content.length === 0){
+            var element = document.getElementById("empty-password-2");
+            password2Input.classList.add('input-error');
+            element.classList.remove('hide');
+            errorList.push('Repita la contraseña');
+        }
+        else if (content !== passwordInput.value) {
+            var element = document.getElementById("error-password-2");
+            password2Input.classList.add('input-error');
+            element.classList.remove('hide');
+            errorList.push('La contraseña repetida debe coincidir con la primera');
         }
     }
     function getArrayNumber(array){
@@ -379,6 +399,19 @@ window.onload = function () {
             element2.classList.add('hide')
         }
     }
+    function focusPassword2 (){
+        if(password2Input.classList.contains('input-error')){
+            password2Input.classList.remove('input-error')
+        }
+        var element1 = document.getElementById("empty-password-2");
+        var element2 = document.getElementById("error-password-2");
+        if(!element1.classList.contains('hide')){
+            element1.classList.add('hide')
+        }
+        if(!element2.classList.contains('hide')){
+            element2.classList.add('hide')
+        }
+    }
     function focusAge (){
         if(ageInput.classList.contains('input-error')){
             ageInput.classList.remove('input-error')
@@ -462,6 +495,7 @@ window.onload = function () {
         validateFullName(fullNameInput.value);
         validateEmail(emailInput.value);
         validatePassword(passwordInput.value);
+        validatePassword2(password2Input.value)
         validateAge(ageInput.value);
         validatePhone(phoneInput.value);
         validateAddress(addressInput.value);
@@ -469,10 +503,11 @@ window.onload = function () {
         validateZipCode(zipCodeInput.value);
         validateIDCard(idCardInput.value);
         if(errorList.length === 0){
-            window.alert(`Nombre completo: ${fullNameInput.value}. Email: ${emailInput.value}. Contraseña: ${passwordInput.value}. Edad: ${ageInput.value}. Teléfono: ${phoneInput.value}. Dirección: ${addressInput.value}. Ciudad: ${cityInput.value}. Código postal: ${zipCodeInput.value}. DNI: ${idCardInput.value}`)
+            window.alert(`Nombre completo: ${fullNameInput.value}.\nEmail: ${emailInput.value}.\nContraseña: ${passwordInput.value}.\nEdad: ${ageInput.value}.\nTeléfono: ${phoneInput.value}.\nDirección: ${addressInput.value}.\nCiudad: ${cityInput.value}.\nCódigo postal: ${zipCodeInput.value}.\nDNI: ${idCardInput.value}`);
+            document.forms.subscriptionForm.reset()
         }
         else{
-            window.alert(errorList)
+            window.alert(errorList.join('\n'))
         }
     }
     function setText(){
