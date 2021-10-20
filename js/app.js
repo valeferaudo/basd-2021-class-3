@@ -33,6 +33,10 @@ window.onload = function () {
     idCardInput.addEventListener('focus',focusIDCard);
     var buttonSend = document.getElementById('button-send');
     buttonSend.addEventListener('click',sendForm);
+    var modalElement = document.getElementById('subscriptionModal');
+    var buttonCloseSubscriptionModal = document.getElementById('close-subscription-modal');
+    buttonCloseSubscriptionModal.addEventListener('click',closeModal)
+
 
     var errorList = [];
 
@@ -514,5 +518,8 @@ window.onload = function () {
         var element = document.getElementById('user');
         element.classList.remove('hide');
         element.innerText = "Hola " + fullNameInput.value;
+    }
+    function closeModal(){
+        modalElement.classList.add('hide')
     }
 }
