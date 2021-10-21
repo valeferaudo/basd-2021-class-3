@@ -332,7 +332,7 @@ button.success:hover{
 }
 .modal {
     position: fixed;
-    z-index: 1;
+    z-index: 100;
     padding-top: 150px;
     left: 0;
     top: 0;
@@ -377,6 +377,22 @@ button.success:hover{
     color: #FFFFFF;
     background-color: #a80808;
     border: 2px solid #FFFFFF;
+}
+#modal-subscription-title{
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}
+#modal-subscription-subtitle{
+    margin-bottom: 18px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.underline{
+    text-decoration: underline;
+}
+.text-red{
+    color:red;
 }
 @media (min-width: 480px) {
     main{
@@ -454,6 +470,9 @@ button.success:hover{
     }
     .border-top{
         border-top: 1px solid #d4d4d4;
+    }
+    #modal-subscription-title{
+        font-size: 23px;
     }
 }
 @media (min-width: 650px) {

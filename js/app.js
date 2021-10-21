@@ -32,11 +32,11 @@ window.onload = function () {
     idCardInput.addEventListener('blur',checkIDCard);
     idCardInput.addEventListener('focus',focusIDCard);
     var buttonSend = document.getElementById('button-send');
-    buttonSend.addEventListener('click',sendForm);
+    buttonSend.addEventListener('click',checkForm);
     var modalElement = document.getElementById('subscriptionModal');
     var buttonCloseSubscriptionModal = document.getElementById('close-subscription-modal');
     buttonCloseSubscriptionModal.addEventListener('click',closeModal)
-
+    fillForm();
 
     var errorList = [];
 
@@ -494,7 +494,7 @@ window.onload = function () {
             element2.classList.add('hide')
         }
     }
-    function sendForm(){
+    function checkForm(){
         errorList = [];
         validateFullName(fullNameInput.value);
         validateEmail(emailInput.value);
@@ -507,8 +507,7 @@ window.onload = function () {
         validateZipCode(zipCodeInput.value);
         validateIDCard(idCardInput.value);
         if(errorList.length === 0){
-            window.alert(`Nombre completo: ${fullNameInput.value}.\nEmail: ${emailInput.value}.\nContraseña: ${passwordInput.value}.\nEdad: ${ageInput.value}.\nTeléfono: ${phoneInput.value}.\nDirección: ${addressInput.value}.\nCiudad: ${cityInput.value}.\nCódigo postal: ${zipCodeInput.value}.\nDNI: ${idCardInput.value}`);
-            document.forms.subscriptionForm.reset()
+            sendForm();
         }
         else{
             window.alert(errorList.join('\n'))
@@ -519,7 +518,71 @@ window.onload = function () {
         element.classList.remove('hide');
         element.innerText = "Hola " + fullNameInput.value;
     }
+    function sendForm(){
+        var url = `http://curso-dev-2021.herokuapp.com/newsletter?name=${fullNameInput.value}&email=${emailInput.value}&password=${passwordInput.value}&password2=${password2Input.value}&age=${ageInput.value}&phone=${phoneInput.value}&address=${addressInput.value}&city=${cityInput.value}&zipCode=${zipCodeInput.value}&idCard=${idCardInput.value}`
+        fetch(url)
+            .then(function(res){
+                return res.json();
+            })
+            .then(function(data){
+                fillModalOK(data);
+                saveData(data);
+                document.forms.subscriptionForm.reset();
+            })
+            .catch(function(err){
+                fillModalError(err)
+            })
+    }
     function closeModal(){
         modalElement.classList.add('hide')
+    }
+    function fillModalOK(data){
+        document.getElementById('modal-subscription-title').innerHTML = "¡Subscripción exitosa!";
+        document.getElementById('modal-subscription-subtitle').innerHTML = "Datos del subscriptor";
+        document.getElementById('modal-subscription-text').innerHTML = `<p class="mb-2"><span class="underline">Nombre:</span> ${data.name}</p>
+                                                                        <p class="mb-2"><span class="underline">Email:</span> ${data.email}</p>
+                                                                        <p class="mb-2"><span class="underline">Contraseña:</span> ${data.password}</p>
+                                                                        <p class="mb-2"><span class="underline">Contraseña repetida:</span> ${data.password2}</p>
+                                                                        <p class="mb-2"><span class="underline">Edad:</span> ${data.age}</p>
+                                                                        <p class="mb-2"><span class="underline">Teléfono:</span> ${data.phone}</p>
+                                                                        <p class="mb-2"><span class="underline">Dirección:</span> ${data.address}</p>
+                                                                        <p class="mb-2"><span class="underline">Ciudad:</span> ${data.city}</p>
+                                                                        <p class="mb-2"><span class="underline">Código postal:</span> ${data.zipCode}</p>
+                                                                        <p class="mb-2"><span class="underline">DNI:</span> ${data.idCard}</p>`;
+        modalElement.classList.remove('hide')
+    }
+    function fillModalError(err){
+        errorTitle = document.getElementById('modal-subscription-title');
+        errorTitle.innerHTML = "¡Ocurrió un error!";
+        errorTitle.classList.add('text-red');
+        document.getElementById('modal-subscription-subtitle').innerHTML = "Error";
+        errorText = document.getElementById('modal-subscription-text');
+        errorText.innerHTML = `Error msg: ${err}`;
+        errorText.classList.add('text-red');
+        modalElement.classList.remove('hide');
+    }
+    function saveData(data){
+        localStorage.setItem('name',data.name);
+        localStorage.setItem('email',data.email);
+        localStorage.setItem('password',data.password);
+        localStorage.setItem('password2',data.password2);
+        localStorage.setItem('age',data.age);
+        localStorage.setItem('phone',data.phone);
+        localStorage.setItem('address',data.address);
+        localStorage.setItem('city',data.city);
+        localStorage.setItem('zipCode',data.zipCode);
+        localStorage.setItem('idCard',data.idCard);
+    }
+    function fillForm(){
+        localStorage.getItem('name') !== null ? fullNameInput.value = localStorage.getItem('name') : null;
+        localStorage.getItem('email') !== null ? emailInput.value = localStorage.getItem('email') : null;
+        localStorage.getItem('password') !== null ? passwordInput.value = localStorage.getItem('password') : null;
+        localStorage.getItem('password2') !== null ? password2Input.value = localStorage.getItem('password2') : null;
+        localStorage.getItem('age') !== null ? ageInput.value = localStorage.getItem('age') : null;
+        localStorage.getItem('phone') !== null ? phoneInput.value = localStorage.getItem('phone') : null;
+        localStorage.getItem('address') !== null ? addressInput.value = localStorage.getItem('address') : null;
+        localStorage.getItem('city') !== null ? cityInput.value = localStorage.getItem('city') : null;
+        localStorage.getItem('zipCode') !== null ? zipCodeInput.value = localStorage.getItem('zipCode') : null;
+        localStorage.getItem('idCard') !== null ? idCardInput.value = localStorage.getItem('idCard') : null;
     }
 }
