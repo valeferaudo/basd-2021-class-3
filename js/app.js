@@ -519,7 +519,7 @@ window.onload = function () {
         element.innerText = "Hola " + fullNameInput.value;
     }
     function sendForm(){
-        var url = `http://curso-dev-2021.herokuapp.com/newsletter?name=${fullNameInput.value}&email=${emailInput.value}&password=${passwordInput.value}&password2=${password2Input.value}&age=${ageInput.value}&phone=${phoneInput.value}&address=${addressInput.value}&city=${cityInput.value}&zipCode=${zipCodeInput.value}&idCard=${idCardInput.value}`
+        var url = `https://curso-dev-2021.herokuapp.com/newsletter?name=${fullNameInput.value}&email=${emailInput.value}&password=${passwordInput.value}&password2=${password2Input.value}&age=${ageInput.value}&phone=${phoneInput.value}&address=${addressInput.value}&city=${cityInput.value}&zipCode=${zipCodeInput.value}&idCard=${idCardInput.value}`
         fetch(url)
             .then(function(res){
                 return res.json();
